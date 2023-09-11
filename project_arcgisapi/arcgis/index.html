@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>ArcGIS Maps SDK for JavaScript project</title>
+    <style>
+        html, body, #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+        .esri-search .esri-search__input {
+            color: #070707; /* Text color */
+        }
+
+        .esri-search .esri-search__submit-button {
+            background-color: #101011; /* Button background color */
+            color: #fff; /* Button text color */
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.27/"></script>
+    <script>
+
+        require([
+
+            "esri/config",
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/widgets/Search" // Add the Search widget module
+
+        ], function(esriConfig, Map, MapView, Search) {
+            esriConfig.apiKey = "AAPK9d605d0c1e2c4218b5ceb0bec2282b5eyFuwMEnnh2XZXXNk8ebWatgz5Am53KJVTn1_LN58X7Bw8uQnOnVBRP8OfXyEx_Iz";
+            const map = new Map({
+                basemap: "arcgis-topographic"
+            });
+            const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [-118.80543,34.02700],
+                zoom: 13
+            });
+
+            // Create a Search widget and add it to the view
+            const searchWidget = new Search({
+                view: view
+            });
+
+            view.ui.add(searchWidget, {
+                position: "top-right" // Adjust the position of the search widget as needed
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="viewDiv"></div>
+</body>
+</html>
